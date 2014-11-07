@@ -19,6 +19,7 @@ class WikisController < ApplicationController
 
   # GET /wikis/1/edit
   def edit
+	
   end
 
   # POST /wikis
@@ -38,10 +39,18 @@ class WikisController < ApplicationController
     end
   end
 
+	def preview
+		@wiki.title
+		@wiki.body
+		
+		
+	end
+	
+
   # PATCH/PUT /wikis/1
   # PATCH/PUT /wikis/1.json
   def update
-		authorize @wiki
+		
     respond_to do |format|
       if @wiki.update(wiki_params)
         format.html { redirect_to @wiki, notice: 'Wiki was successfully updated.' }

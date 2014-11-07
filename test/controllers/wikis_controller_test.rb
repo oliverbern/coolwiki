@@ -43,6 +43,8 @@ class WikisControllerTest < ActionController::TestCase
     patch :update, id: @wiki, wiki: { body: @wiki.body, title: @wiki.title }
     assert_redirected_to wiki_path(assigns(:wiki))
   end
+	
+	
 
   test "should destroy wiki" do
     assert_difference('Wiki.count', -1) do

@@ -1,4 +1,4 @@
-class PostPolicy
+class WikiPolicy
 	attr_reader :user, :wiki
 	
 	def initialize(user, wiki)
@@ -6,8 +6,16 @@ class PostPolicy
 		@wiki = wiki
 	end
 	
-	def update?
-		user.admin?
+	def collaborator
+		wiki.collaborater_id == user.id
+	end
+	
+	def creator
+		wiki.user_id == user.id
+	end
+	
+	def edit?
+		user.role(:admin)
 	end
 	
 end

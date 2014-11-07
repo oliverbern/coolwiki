@@ -6,9 +6,11 @@
 #
 
 one: 
-  email: admin@admin.ch  
+  email: 212admin@admin.ch  
+  role: 0
 #
 two: 
   email: oapjones@gmail.com
+  role: 1
  
   
