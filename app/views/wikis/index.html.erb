@@ -1,6 +1,6 @@
 <h1>Listing wikis</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Title</th>
@@ -12,20 +12,25 @@
   <tbody>
     <% @wikis.each do |wiki| %>
       <tr>
-        <td><%= markdown wiki.title %></td>
-        <td><%= markdown wiki.body %></td>
+        <td><%=  wiki.title %></td>
+        <td><%=  wiki.body %></td>
         <td><%= link_to 'Show', wiki %></td>
+        <% if user_signed_in? %>
+				
         <td><%= link_to 'Edit', edit_wiki_path(wiki) %></td>
-        <td><%= link_to 'Destroy', wiki, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				
+        <td><%= link_to 'Delete', wiki, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<% if user_signed_in? %>
 <%= link_to 'New Wiki', new_wiki_path %>
-
+<% end %>
 
 
 

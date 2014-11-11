@@ -6,7 +6,7 @@ class WikisController < ApplicationController
   def index
     @wikis = Wiki.all
   end
-
+	
   # GET /wikis/1
   # GET /wikis/1.json
   def show
@@ -39,12 +39,6 @@ class WikisController < ApplicationController
     end
   end
 
-	def preview
-		@wiki.title
-		@wiki.body
-		
-		
-	end
 	
 
   # PATCH/PUT /wikis/1

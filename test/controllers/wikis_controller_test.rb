@@ -9,6 +9,14 @@ class WikisControllerTest < ActionController::TestCase
 		@user = users(:one)
   end
 
+	test "user id to wiki" do
+		sign_in @user
+		post :create, wiki: { body: @wiki.body, title: @wiki.title }
+		assert_equal @user.id, assigns(:wiki).user_id
+	end
+
+
+
   test "should get index" do
     get :index
     assert_response :success
