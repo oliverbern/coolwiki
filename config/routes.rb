@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get 'welcome/about'
 
+  get 'welcome/collaborators'
+
   resources :wikis
 	
 	
