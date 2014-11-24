@@ -22,6 +22,26 @@ class WikisController < ApplicationController
 	
   end
 
+  def collaborate
+    #@collaborator = Collaborator.new(user_id: params[:user_id], wiki_id: params[:id])
+    
+    @wiki = current_user.wikis.find(params[:id])
+
+    @wiki.collaborators.new(user_id:params[:user_id])
+
+
+    respond_to do |format|
+      if @wiki.save
+        format.html { redirect_to wiki_path(params[:id]), notice: 'User successfully added as collaborator.' }
+        format.json { render :show, status: :ok, location: wiki_path(params[:id]) }
+      else
+        format.html { render :edit }
+        format.json { render json: @wiki.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
   # POST /wikis
   # POST /wikis.json
   def create
@@ -39,11 +59,13 @@ class WikisController < ApplicationController
     end
   end
 
-	
+	def privatewiki
+  end
 
   # PATCH/PUT /wikis/1
   # PATCH/PUT /wikis/1.json
   def update
+
 		
     respond_to do |format|
       if @wiki.update(wiki_params)
@@ -74,6 +96,6 @@ class WikisController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wiki_params
-      params.require(:wiki).permit(:title, :body)
+      params.require(:wiki).permit(:title, :body, :privatewiki)
     end
 end

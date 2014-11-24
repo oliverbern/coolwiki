@@ -10,4 +10,7 @@ class WelcomeController < ApplicationController
 
   def collaborators
   end
+
+  def privatewikis
+  end
 end

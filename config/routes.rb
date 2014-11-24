@@ -8,7 +8,16 @@ Rails.application.routes.draw do
 
   get 'welcome/collaborators'
 
+  get 'welcome/privatewikis'
+
+  get 'wikis/privatewiki'
+
+
+  post '/wikis/:id/add_collaborator' => 'wikis#collaborate', as: 'add_collaborator'
+
   resources :wikis
+
+  resources :charges, only: [:new, :create]
 	
 	
 	root to: "wikis#index"

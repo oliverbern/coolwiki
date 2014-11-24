@@ -1,4 +1,5 @@
-<h1>Available Wikis</h1>
+<h1>Private Wikis</h1>
+<p>Only creator and collaborators have access to see these entries</p>
 
 <table class="table table-hover">
   <thead>
@@ -10,8 +11,8 @@
   </thead>
 
   <tbody>
-    <% @wikis.each do |wiki| %>
-    <% if wiki.privatewiki == false %>
+    <% Wiki.all.each do |wiki| %>
+    <% if current_user.can_see_as_collaborator?(wiki) %>
       <tr>
         <td><%=  wiki.title %></td>
         <td><%=  wiki.body %></td>
@@ -21,15 +22,9 @@
         <td><%= link_to 'Edit', edit_wiki_path(wiki) %></td>
 				
         <td><%= link_to 'Delete', wiki, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+      <% end %>   
         <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-<% if user_signed_in? %>
-<%= link_to 'New Wiki', new_wiki_path %>
-<% end %>
-

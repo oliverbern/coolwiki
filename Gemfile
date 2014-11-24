@@ -17,3 +17,5 @@ gem 'devise'
 gem 'redcarpet'
 gem 'jazz_hands', group: [:development, :test]
 gem 'capybara'
+gem 'stripe'
+gem 'figaro', '1.0'
