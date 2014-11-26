@@ -45,7 +45,11 @@ class WikisController < ApplicationController
   # POST /wikis
   # POST /wikis.json
   def create
-    @wiki = Wiki.new(wiki_params)
+    attributes = wiki_params
+ 
+    attributes.delete(:privatewiki) if current_user.user?
+    @wiki = Wiki.new(attributes)
+
 		@wiki.user_id = current_user.id
 
     respond_to do |format|
